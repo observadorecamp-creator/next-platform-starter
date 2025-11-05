@@ -1,0 +1,9 @@
+ofertas-ml-hub/
+│
+├── index.html          (Sitio web público)
+├── app.html           (Aplicación de escritorio)
+├── styles.css         (Estilos compartidos)
+├── app.js             (Lógica de la app)
+├── manifest.json      (Para instalar como PWA)
+├── service-worker.js  (Funciona offline)
+└── README.txt         (Instrucciones)

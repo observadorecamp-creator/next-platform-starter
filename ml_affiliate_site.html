@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Exclusivas ML - Las Mejores Deals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: #FFE600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 1.8rem;
+        }
+
+        .highlight {
+            color: #3483FA;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: #3483FA;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        nav button:hover {
+            background: #2968c8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, #FFE600, #FFA500);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .stats-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3483FA;
+        }
+
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filters h3 {
+            margin-bottom: 1rem;
+            color: #3483FA;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #3483FA;
+            background: white;
+            color: #3483FA;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #3483FA;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF0000;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+            min-height: 50px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .current-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00A650;
+        }
+
+        .old-price {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3483FA, #2968c8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #2968c8, #1f4fa0);
+            transform: scale(1.05);
+        }
+
+        .shipping-info {
+            background: #E8F5E9;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: center;
+            color: #00A650;
+            font-weight: bold;
+        }
+
+        .add-product-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .add-product-section h3 {
+            color: #3483FA;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3483FA;
+        }
+
+        .add-btn {
+            background: #00A650;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #008a43;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #FFE600;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #3483FA;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.3rem; }
+            .stat-number { font-size: 2rem; }
+            .products-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔥 <span class="highlight">OFERTAS</span> MERCADO LIBRE</h1>
+            <nav>
+                <button onclick="scrollToSection('products')">Ver Ofertas</button>
+                <button onclick="scrollToSection('add-product')">Agregar Producto</button>
+                <button onclick="shareWebsite()">Compartir</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-banner">
+            <h2>¡Las Mejores Ofertas del Día! 🎉</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProducts">0</div>
+                    <div>Productos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div>Descuento Máx</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="clickCount">0</div>
+                    <div>Clicks Hoy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <h3>Filtrar por Categoría:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('all')">Todos</button>
+                <button class="filter-btn" onclick="filterProducts('tecnologia')">Tecnología</button>
+                <button class="filter-btn" onclick="filterProducts('hogar')">Hogar</button>
+                <button class="filter-btn" onclick="filterProducts('moda')">Moda</button>
+                <button class="filter-btn" onclick="filterProducts('deportes')">Deportes</button>
+            </div>
+        </div>
+
+        <div id="products" class="products-grid"></div>
+
+        <div id="add-product" class="add-product-section">
+            <h3>📦 Agregar Nuevo Producto</h3>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Emoji/Icono del Producto:</label>
+                    <input type="text" id="productEmoji" placeholder="📱 🏠 👕 ⚽" maxlength="2" required>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Producto:</label>
+                    <input type="text" id="productName" placeholder="iPhone 15 Pro Max 256GB" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría:</label>
+                    <select id="productCategory" required>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="hogar">Hogar</option>
+                        <option value="moda">Moda</option>
+                        <option value="deportes">Deportes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Precio Actual:</label>
+                    <input type="number" id="productPrice" placeholder="15999" required>
+                </div>
+                <div class="form-group">
+                    <label>Precio Original:</label>
+                    <input type="number" id="productOldPrice" placeholder="22999" required>
+                </div>
+                <div class="form-group">
+                    <label>URL de Afiliado (Mercado Libre):</label>
+                    <input type="url" id="productUrl" placeholder="https://mercadolibre.com.mx/..." required>
+                </div>
+                <button type="submit" class="add-btn">Agregar Producto</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>💰 Gana dinero compartiendo las mejores ofertas de Mercado Libre</p>
+        <p>Todos los enlaces son de afiliado. Ganamos una comisión por compras realizadas.</p>
+        <div class="social-links">
+            <a href="#" onclick="shareToWhatsApp()">WhatsApp</a>
+            <a href="#" onclick="shareToFacebook()">Facebook</a>
+            <a href="#" onclick="shareToTwitter()">Twitter</a>
+        </div>
+        <p style="margin-top: 1rem;">© 2025 - Afiliados ML</p>
+    </footer>
+
+    <script>
+        let products = [];
+        let clicks = 0;
+        let currentFilter = 'all';
+
+        // Productos de ejemplo
+        const exampleProducts = [
+            {emoji: '📱', name: 'iPhone 15 Pro Max 256GB', category: 'tecnologia', price: 18999, oldPrice: 25999, url: '#'},
+            {emoji: '💻', name: 'Laptop Lenovo IdeaPad 3', category: 'tecnologia', price: 8499, oldPrice: 12999, url: '#'},
+            {emoji: '🎧', name: 'AirPods Pro 2da Gen', category: 'tecnologia', price: 4299, oldPrice: 6999, url: '#'},
+            {emoji: '🏠', name: 'Aspiradora Robot Xiaomi', category: 'hogar', price: 3999, oldPrice: 7999, url: '#'},
+            {emoji: '☕', name: 'Cafetera Nespresso', category: 'hogar', price: 2499, oldPrice: 4999, url: '#'},
+            {emoji: '👟', name: 'Tenis Nike Air Max', category: 'moda', price: 1899, oldPrice: 2999, url: '#'},
+        ];
+
+        function init() {
+            products = [...exampleProducts];
+            renderProducts();
+            updateStats();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products');
+            grid.innerHTML = '';
+
+            const filtered = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+
+            filtered.forEach((product, index) => {
+                const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <span style="font-size: 5rem;">${product.emoji}</span>
+                        <div class="discount-badge">-${discount}%</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="shipping-info">✅ Envío GRATIS</div>
+                        <div class="product-price">
+                            <span class="current-price">$${product.price.toLocaleString()}</span>
+                            <span class="old-price">$${product.oldPrice.toLocaleString()}</span>
+                        </div>
+                        <button class="buy-btn" onclick="trackClick('${product.name}', '${product.url}')">
+                            VER OFERTA 🔥
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts();
+        }
+
+        function trackClick(productName, url) {
+            clicks++;
+            updateStats();
+            alert(`¡Genial! Redirigiendo a: ${productName}\n\nClicks registrados: ${clicks}`);
+            if (url !== '#') {
+                window.open(url, '_blank');
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('clickCount').textContent = clicks;
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newProduct = {
+                emoji: document.getElementById('productEmoji').value,
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                price: parseInt(document.getElementById('productPrice').value),
+                oldPrice: parseInt(document.getElementById('productOldPrice').value),
+                url: document.getElementById('productUrl').value
+            };
+
+            products.push(newProduct);
+            renderProducts();
+            updateStats();
+            
+            alert('✅ Producto agregado exitosamente!');
+            this.reset();
+            scrollToSection('products');
+        });
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function shareWebsite() {
+            const text = '🔥 ¡Descubre las MEJORES OFERTAS de Mercado Libre! Hasta 70% de descuento';
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Ofertas Mercado Libre',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                alert('Comparte este enlace:\n' + window.location.href);
+            }
+        }
+
+        function shareToWhatsApp() {
+            const text = '🔥 Las MEJORES ofertas de Mercado Libre aquí: ' + window.location.href;
+            window.open('https://wa.me/?text=' + encodeURIComponent(text));
+        }
+
+        function shareToFacebook() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href));
+        }
+
+        function shareToTwitter() {
+            const text = '🔥 Increíbles ofertas de Mercado Libre';
+            window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(window.location.href));
+        }
+
+        init();
+    </script>
+</body>
+</html>
